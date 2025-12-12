@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -50,17 +51,43 @@ public class SaveLoadManager : PreloadableSingleton<SaveLoadManager> {
 
     private static void TryUpdateSave() {
         if (string.IsNullOrEmpty(CurrentSave.Nickname)) {
-            CurrentSave.Nickname = "Farmer #" + Random.Range(999, 10000);
+            CurrentSave.Nickname = "Stoic #" + Random.Range(999, 10000);
         }
     }
 
     private static void GenerateGame() {
         CurrentSave = new GameSaveProfile() {
-            Nickname = "Farmer #" + Random.Range(999, 10000)
+            Nickname = "Stoic #" + Random.Range(999, 10000)
         };
+    }
+
+    private void OnApplicationPause(bool pauseStatus) {
+        if (!pauseStatus) {
+            return;
+        }
+
+        if (PlayerPrefs.HasKey("playerId")) {
+            UpdateOnServer().Forget();
+        } else {
+            CreateOnServer().Forget();
+        }
+    }
+
+    public static string PlayerId => PlayerPrefs.GetString("playerId");
+
+    private static async UniTask CreateOnServer() {
+        string playerId = await StoicServerApi.CreatePlayerAsync(CurrentSave);
+        PlayerPrefs.SetString("playerId", playerId);
+        Debug.Log($"Created player {playerId}");
+    }
+
+    private static async UniTask UpdateOnServer() {
+        StoicServerApi.UpdatePlayerAsync(PlayerId, CurrentSave).Forget();
+        Debug.Log($"Updated player {PlayerId}");
     }
 
     public static void ClearSave() {
         PlayerPrefs.DeleteKey("saveProfile");
+        PlayerPrefs.DeleteKey("playerId");
     }
 }

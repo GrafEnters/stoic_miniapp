@@ -70,8 +70,6 @@ public class ToySelectPanel : MonoBehaviour {
     public void EndEditingToy() {
         gameObject.SetActive(false);
         _decoratePanel.AddToy(_toyData);
-        SaveLoadManager.CurrentSave.Toys.Add(_toyData);
-        SaveLoadManager.SaveGame();
     }
 }
 

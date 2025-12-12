@@ -8,5 +8,5 @@ public class GameSaveProfile {
 
     public string MessageSent = null;
 
-    public List<ToyData> Toys = new List<ToyData>();
+    public TreePartData TreePartData =  new TreePartData();
 }

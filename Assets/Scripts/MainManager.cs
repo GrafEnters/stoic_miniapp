@@ -6,6 +6,7 @@ public class MainManager : MonoBehaviour {
     private DecoratePanel _decoratePanel;
 
     private void Start() {
+        WebGLInput.captureAllKeyboardInput = false;
         _decoratePanel.Init();
     }
 }

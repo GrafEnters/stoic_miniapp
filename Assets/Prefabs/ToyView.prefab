@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1f6f2f58eb6384942942423ab5f21a98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34d28bd6272d4634caff8238b07659de, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -110,7 +110,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4587756188509767007
 CanvasRenderer:
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 80a6bfe1e54c9b6409cdf1469dc642f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ccacf7f3f7b29b749abc65c71fd58130, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de611b58f51b5fd469e0e9b4d994eb02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09752b460aca6d146b63236ee65dc031, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -307,7 +307,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 2
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -382,13 +382,13 @@ MonoBehaviour:
   _fill: {fileID: 2491015907654750630}
   _pattern: {fileID: 1089609700874458985}
   _shapes:
-  - {fileID: 21300000, guid: 1f6f2f58eb6384942942423ab5f21a98, type: 3}
-  - {fileID: 21300000, guid: fc5b57b4d463ad54eaceba9f17cd7b11, type: 3}
-  - {fileID: 21300000, guid: 9a60c243ab4efab49b30da616c0426a3, type: 3}
+  - {fileID: 21300000, guid: 8a38b2a20c956a74a91ee0433c9fb5c0, type: 3}
+  - {fileID: 21300000, guid: dc34db9dd0f82e643b88195afc70466b, type: 3}
+  - {fileID: 21300000, guid: 34d28bd6272d4634caff8238b07659de, type: 3}
   _masks:
-  - {fileID: 21300000, guid: de611b58f51b5fd469e0e9b4d994eb02, type: 3}
-  - {fileID: 21300000, guid: 002e80e1103667a4eab8bef93870e740, type: 3}
-  - {fileID: 21300000, guid: 3a43445983f57cc4cba8b7d8df315c1b, type: 3}
+  - {fileID: 21300000, guid: b32ee99bd4657ba479139bbab09824ff, type: 3}
+  - {fileID: 21300000, guid: f3e48576737b54d4abb6642bfe98f6ec, type: 3}
+  - {fileID: 21300000, guid: 09752b460aca6d146b63236ee65dc031, type: 3}
   _patterns:
   - {fileID: 21300000, guid: ccacf7f3f7b29b749abc65c71fd58130, type: 3}
   - {fileID: 21300000, guid: 80a6bfe1e54c9b6409cdf1469dc642f4, type: 3}

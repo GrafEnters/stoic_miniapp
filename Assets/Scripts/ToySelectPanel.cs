@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ToySelectPanel : MonoBehaviour {
     [SerializeField]
-    private Image _shapePreview, _shapePreview2, _shapeColorPreview, _patternPreview, _patternPreview2;
+    private Image _shapePreview, _shapeEdgePreview, _shapePreview2, _fillPreview, _shapeColorPreview, _patternPreview, _patternPreview2;
 
     [SerializeField]
-    private List<Sprite> _shapes, _patterns;
+    private List<Sprite> _shapes, _shapesEdges, _patterns;
 
     [SerializeField]
     private List<Color> _shapeColors, _patternColors;
@@ -32,31 +32,32 @@ public class ToySelectPanel : MonoBehaviour {
         for (int i = 0; i < _togglePatternColors.Count; i++) {
             _togglePatternColors[i].color = _patternColors[i];
         }
+    }
 
+    public void Open() {
+        gameObject.SetActive(true);
+        _toyData = new ToyData();
         SelectShape(0);
         SelectPattern(0);
         SelectShapeColor(0);
         SelectPatternColor(0);
     }
 
-    public void Open() {
-        gameObject.SetActive(true);
-        _toyData = new ToyData();
-    }
-
     public void SelectShape(int index) {
         _shapePreview.sprite = _shapes[index];
         _shapePreview2.sprite = _shapes[index];
+        _shapeEdgePreview.sprite = _shapesEdges[index];
         _toyData.ShapeId = index;
     }
 
     public void SelectPattern(int index) {
         _patternPreview.sprite = _patterns[index];
+        _patternPreview2.sprite = _patterns[index];
         _toyData.PatternId = index;
     }
 
     public void SelectShapeColor(int index) {
-        _shapePreview.color = _shapeColors[index];
+        _fillPreview.color = _shapeColors[index];
         _shapeColorPreview.color = _shapeColors[index];
         _toyData.FillColorId = index;
     }

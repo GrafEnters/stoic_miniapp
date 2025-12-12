@@ -37,9 +37,12 @@ public class DecoratePanel : MonoBehaviour {
         if (treeData != null) {
             foreach (var partData in treeData.Parts) {
                 var part = Instantiate(_treePartPrefab, _treeContainer);
-                part.SetData(partData, partData.PlayerId == currentPlayerId);
+
                 if (partData.PlayerId == currentPlayerId) {
                     _myTreePart = part;
+                    _myTreePart.SetData(SaveLoadManager.CurrentSave.TreePartData, true);
+                } else {
+                    part.SetData(partData, partData.PlayerId == currentPlayerId);
                 }
             }
         }

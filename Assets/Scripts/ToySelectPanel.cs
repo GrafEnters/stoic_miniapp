@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class ToySelectPanel : MonoBehaviour {
     [SerializeField]
@@ -37,6 +38,7 @@ public class ToySelectPanel : MonoBehaviour {
     public void Open() {
         gameObject.SetActive(true);
         _toyData = new ToyData();
+        _toyData.Position = new Vector2(UnityEngine.Random.Range(-100, 100), UnityEngine.Random.Range(-50, 50));
         SelectShape(0);
         SelectPattern(0);
         SelectShapeColor(0);

@@ -734,6 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadingManager
   _delayBeforeSceneSwitch: 2.5
+  _progressSlider: {fileID: 1487606340}
 --- !u!4 &1342105007
 Transform:
   m_ObjectHideFlags: 0

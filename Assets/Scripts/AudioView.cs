@@ -29,7 +29,7 @@ public class AudioView : MonoBehaviour {
     private void Update() {
         if (_audioSource.isPlaying) {
             _slider.SetValueWithoutNotify(_audioSource.time / _audioSource.clip.length);
-            _timeText.text = $"00:{Mathf.FloorToInt(_audioSource.time)}";
+            _timeText.text = $"00:0{Mathf.FloorToInt(_audioSource.time)}";
         } else {
             _timeText.text = $"00:0{Mathf.FloorToInt(_audioSource.clip.length)}";
         }

@@ -4,36 +4,63 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>{{{ PRODUCT_NAME }}}</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="TemplateData/custom.css">
+
+  <script>
+    // Telegram full-screen
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.Telegram && Telegram.WebApp) {
+        Telegram.WebApp.expand();
+        Telegram.WebApp.disableVerticalSwipes();
+      }
+    });
+
+    function resizeCanvas() {
+      const canvas = document.getElementById("unity-canvas");
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("orientationchange", resizeCanvas);
+    document.addEventListener("DOMContentLoaded", resizeCanvas);
+  </script>
 </head>
 
 <body>
-  <div id="unity-container">
-    <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"></canvas>
-  </div>
+<div id="unity-container">
+  <canvas id="unity-canvas" tabindex="-1"></canvas>
+</div>
 
-  <script>
-    var canvas = document.querySelector("#unity-canvas");
-    var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
-    var config = {
-      dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
-      frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
-#if USE_WASM
-      codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
-#endif
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
-      productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
-      productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}}
-    };
+<script>
+  const canvas = document.querySelector("#unity-canvas");
+  const buildUrl = "Build";
+  const loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
 
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      createUnityInstance(canvas, config);
-    };
-    document.body.appendChild(script);
-  </script>
+  const config = {
+    dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+    frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+    #if USE_WASM
+    codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+    #endif
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+  productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+  productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}}
+  };
+
+  const script = document.createElement("script");
+  script.src = loaderUrl;
+
+  script.onload = () => {
+    createUnityInstance(canvas, config).then((unity) => {
+      resizeCanvas();
+    });
+  };
+
+  document.body.appendChild(script);
+</script>
 </body>
 </html>

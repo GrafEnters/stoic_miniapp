@@ -77,6 +77,10 @@ public class TreeData {
 [Serializable]
 public class TreePartData {
     public string PlayerId;
-    public int TreeIndex = Random.Range(0, 6);
+    public int TreeIndex;
     public List<ToyData> Toys = new List<ToyData>();
+
+    public TreePartData() {
+        TreeIndex = Random.Range(0, 6);
+    }
 }

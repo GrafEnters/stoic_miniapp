@@ -10,14 +10,16 @@ public class WishPanel : MonoBehaviour {
 
     public void Open() {
         gameObject.SetActive(true);
-        _afterSent.SetActive(SaveLoadManager.CurrentSave.MessageSent != null);
+        _afterSent.SetActive(!string.IsNullOrEmpty(SaveLoadManager.CurrentSave.MessageSent));
     }
 
     public void Sent() {
+        if (string.IsNullOrEmpty(_input.text)) {
+            return;
+        }
+
         SaveLoadManager.CurrentSave.MessageSent = _input.text;
         SaveLoadManager.SaveGame();
         _afterSent.SetActive(true);
     }
-    
-    
 }

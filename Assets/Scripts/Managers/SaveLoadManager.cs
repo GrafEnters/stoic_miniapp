@@ -13,6 +13,8 @@ public class SaveLoadManager : PreloadableSingleton<SaveLoadManager> {
 
     public override int InitPriority => -1000;
 
+    private static DateTime _lastSavedOnServer = DateTime.Now;
+
     private static string GenerateJsonString() {
         CurrentSave.SavedDate = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture);
 
@@ -32,6 +34,15 @@ public class SaveLoadManager : PreloadableSingleton<SaveLoadManager> {
         if (_needToSave) {
             _needToSave = false;
             RewriteGameSavedData();
+        }
+    }
+
+    private async void Start() {
+        while (true) {
+            await UniTask.WaitForSeconds(8);
+            if ((DateTime.Now - _lastSavedOnServer).TotalSeconds >= 8) {
+                SendDataToServer();
+            }
         }
     }
 
@@ -66,6 +77,11 @@ public class SaveLoadManager : PreloadableSingleton<SaveLoadManager> {
             return;
         }
 
+        SendDataToServer();
+    }
+
+    public static void SendDataToServer() {
+        _lastSavedOnServer = DateTime.Now;
         if (PlayerPrefs.HasKey("playerId")) {
             UpdateOnServer().Forget();
         } else {

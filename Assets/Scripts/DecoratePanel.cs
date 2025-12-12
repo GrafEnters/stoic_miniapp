@@ -80,6 +80,7 @@ public class DecoratePanel : MonoBehaviour {
         _myTreePart.AddToy(data);
         SaveLoadManager.SaveGame();
         UpdateToolsAndCounter();
+        SaveLoadManager.SendDataToServer();
     }
 
     private void UpdateToolsAndCounter() {
@@ -93,5 +94,6 @@ public class DecoratePanel : MonoBehaviour {
         _myTreePart.RemoveToy();
         SaveLoadManager.SaveGame();
         UpdateToolsAndCounter();
+        SaveLoadManager.SendDataToServer();
     }
 }
